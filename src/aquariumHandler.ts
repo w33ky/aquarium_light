@@ -31,8 +31,8 @@ const aquariums = [
     name: "the small one",
     address: "0FFF0FFF",
     lightOn: [
-      { from: "2:00", to: "22:18" },
-      { from: "22:30", to: "23:00" },
+      { from: "8:00", to: "11:00" },
+      { from: "13:30", to: "20:00" },
     ],
   },
 ];
