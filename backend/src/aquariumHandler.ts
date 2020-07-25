@@ -39,9 +39,9 @@ const aquariums = [
 
 export default (serialPort: SerialPort, lineStream: Readline): void => {
   const now = moment(moment().format("H:m"), ["h:m a", "H:m"]);
+  console.log(`-----${moment().toISOString()}------`);
 
   aquariums.forEach((aquarium) => {
-    console.log("----------");
     console.log(aquarium.name);
     let isOn = false;
 
