@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:lts-slim
 
 WORKDIR /usr/src/app
 COPY ./backend/package.json ./package.json
