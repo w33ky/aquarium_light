@@ -22,27 +22,47 @@ function setLight(
     })
     .catch((err) => {
       console.error(err);
+      lineStream.removeAllListeners();
       return false;
     });
 }
 
+// todo load dynamically
 const aquariums = [
   {
-    name: "the small one",
+    name: "12l Quarantäne Becken",
     address: "0FFF0FFF",
     lightOn: [
       { from: "8:00", to: "11:00" },
       { from: "13:00", to: "20:00" },
     ],
   },
+  {
+    name: "24l Wohnzimmer Becken",
+    address: "0FFFF0FF",
+    lightOn: [
+      { from: "7:00", to: "12:00" },
+      { from: "15:00", to: "19:00" },
+    ],
+  },
+  {
+    name: "60l Wohnzimmer Becken",
+    address: "0FFFFF0F",
+    lightOn: [{ from: "7:00", to: "19:00" }],
+  },
 ];
 
-export default (serialPort: SerialPort, lineStream: Readline): void => {
+export default async (
+  serialPort: SerialPort,
+  lineStream: Readline
+): Promise<void> => {
   const now = moment(moment().format("H:m"), ["h:m a", "H:m"]);
   console.log(`-----${moment().format("DD.MM.YYYY HH:mm:ss")}------`);
 
-  aquariums.forEach((aquarium) => {
+  for (let i = 0; i < aquariums.length; i++) {
+    const aquarium = aquariums[i];
     console.log(aquarium.name);
+
     let isOn = false;
 
     aquarium.lightOn.forEach((range) => {
@@ -53,8 +73,11 @@ export default (serialPort: SerialPort, lineStream: Readline): void => {
       }
     });
 
-    setLight(serialPort, lineStream, aquarium.address, isOn).then((result) =>
-      console.log(result ? "success" : "fail")
-    );
-  });
+    await setLight(
+      serialPort,
+      lineStream,
+      aquarium.address,
+      isOn
+    ).then((result) => console.log(result ? "success" : "fail"));
+  }
 };
