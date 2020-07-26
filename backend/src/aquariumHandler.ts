@@ -39,7 +39,8 @@ const aquariums = [
 
 export default (serialPort: SerialPort, lineStream: Readline): void => {
   const now = moment(moment().format("H:m"), ["h:m a", "H:m"]);
-  console.log(`-----${moment().toISOString()}------`);
+  console.log(moment.locale());
+  console.log(`-----${moment().format()}------`);
 
   aquariums.forEach((aquarium) => {
     console.log(aquarium.name);

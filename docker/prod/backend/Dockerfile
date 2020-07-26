@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 
-RUN apk add --no-cache tzdata python3 make g++ linux-headers
+RUN apk add --no-cache python3 make g++ linux-headers
 
 WORKDIR /usr/src/app
 COPY ./backend/package.json ./package.json
