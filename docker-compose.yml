@@ -1,12 +1,15 @@
 version: '2'
 services:
-#  frontend:
-#    container_name: aqua_frontend
-#    build:
-#      context: .
-#      dockerfile: docker/dev/frontend/Dockerfile
-#    volumes:
-#      - ./frontend:/usr/src/app
+  frontend:
+    container_name: aqua_frontend
+    build:
+      context: .
+      dockerfile: docker/dev/frontend/Dockerfile
+    tty: true
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+    - 3000:3000
   backend:
     container_name: aqua_backend_dev
     build:
