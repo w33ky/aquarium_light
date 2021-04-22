@@ -33,8 +33,9 @@ const aquariums = [
     name: "12l Quarantäne Becken",
     address: "0FFF0FFF",
     lightOn: [
-      { from: "8:00", to: "11:00" },
-      { from: "13:00", to: "20:00" },
+      // { from: "8:00", to: "11:00" },
+      // { from: "13:00", to: "20:00" },
+      { from: "8:00", to: "20:00" },
     ],
   },
   {
